@@ -43,8 +43,8 @@ public class Main {
     }
 
     private void getTimeIn(String zoneId, String city, ZonedDateTime utcDateTime) {
-        ZoneId sydneyZone = ZoneId.of(zoneId);
-        ZonedDateTime sydneyDateTime = utcDateTime.withZoneSameInstant(sydneyZone);
-        System.out.println(city + ": " + sydneyDateTime.format(FORMATTER));
+        ZoneId zone = ZoneId.of(zoneId);
+        ZonedDateTime dateTime = utcDateTime.withZoneSameInstant(zone);
+        System.out.println(city + ": " + dateTime.format(FORMATTER));
     }
 }
