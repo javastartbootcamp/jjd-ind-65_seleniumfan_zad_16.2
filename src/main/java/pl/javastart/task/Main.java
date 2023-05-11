@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class Main {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    public static final int PATTERN_WITHOUT_TIME = 10;
 
     public static void main(String[] args) {
         Main main = new Main();
@@ -20,14 +21,13 @@ public class Main {
 
         System.out.println("Podaj datę:");
         String inputDate = scanner.nextLine();
+        if (inputDate.length() == PATTERN_WITHOUT_TIME) {
+            inputDate += " 00:00:00";
+        }
         for (String form : patterns) {
             LocalDateTime dateTime;
             try {
-                if (form.equals("yyyy-MM-dd")) {
-                    dateTime = LocalDateTime.parse(inputDate + " 00:00:00", FORMATTER);
-                } else {
-                    dateTime = LocalDateTime.parse(inputDate, DateTimeFormatter.ofPattern(form));
-                }
+                dateTime = LocalDateTime.parse(inputDate, DateTimeFormatter.ofPattern(form));
             } catch (DateTimeParseException e) {
                 continue;
             }
